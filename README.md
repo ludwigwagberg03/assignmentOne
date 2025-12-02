@@ -7,4 +7,4 @@ Användaren interagerar genom att klicka på knappar för att förflytta sig mel
 
 Demo
 
-Se projektet live via GitHub Pages: Länk till demo
+Se projektet live via GitHub Pages: https://ludwigwagberg03.github.io/assignmentOne/
