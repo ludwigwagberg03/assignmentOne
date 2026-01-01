@@ -2,9 +2,10 @@ document.addEventListener("DOMContentLoaded", main);
 
 function main() {
     let title = document.getElementById("title-text");
-    let buttons = document.getElementById("buttons");
+    const buttons = document.getElementById("buttons");
     let currentLocation = "forest";
-    let CharacterInfo = document.querySelector(".character-info");
+    const CharacterInfo = document.querySelector(".character-info");
+    const inventory = document.querySelector(".inventory");
 
     let world = {
         forest: {
@@ -37,8 +38,24 @@ function main() {
 
     changeLocation(world, currentLocation, buttons, title);
     renderCharacterInformation(character, CharacterInfo);
+    renderInventory(inventory, character);
 }
 
+function renderInventory(inventory, character) {
+    inventory.innerHTML = "";
+
+    for (const inventoryItems of character.inventory) {
+        console.log(inventoryItems);
+        createInventorySlots(inventory, inventoryItems);
+    }
+}
+function createInventorySlots(inventory, inventoryItems) {
+    let inventorySlot = document.createElement("li");
+    inventorySlot.innerHTML = inventoryItems;
+    inventorySlot.classList.add("inventory-slot")
+    
+    inventory.append(inventorySlot);
+}
 function renderCharacterInformation(character, CharacterInfo) {
     createCharacterNameElement(character, CharacterInfo);
     createCharacterHitPointsElement(character, CharacterInfo);
