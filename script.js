@@ -103,14 +103,15 @@ function changeLocation(world, currentLocation, buttons, title, item, character,
 
 }
 function renderItem(currentLocation, item, character, inventory) {
-    // console.log("render", currentLocation)
-    if (currentLocation === "village") {
+
+    if (currentLocation === "village" && !character.inventory.includes("Herbs")) {
         item.classList.add("active");
 
         item.addEventListener("click", function () {
             character.inventory.push(item.innerHTML);
-            renderInventory(inventory, character)
             item.classList.remove("active");
+
+            renderInventory(inventory, character)
         })
     } else {
         item.classList.remove("active");
