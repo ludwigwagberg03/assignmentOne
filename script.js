@@ -6,6 +6,7 @@ function main() {
     let currentLocation = "forest";
     const CharacterInfo = document.querySelector(".character-info");
     const inventory = document.querySelector(".inventory");
+    const item = document.querySelector(".item");
 
     let world = {
         forest: {
@@ -36,7 +37,7 @@ function main() {
         inventory: ["sword", "axe"]
     }
 
-    changeLocation(world, currentLocation, buttons, title);
+    changeLocation(world, currentLocation, buttons, title, item, character, inventory);
     renderCharacterInformation(character, CharacterInfo);
     renderInventory(inventory, character);
 }
@@ -45,7 +46,6 @@ function renderInventory(inventory, character) {
     inventory.innerHTML = "";
 
     for (const inventoryItems of character.inventory) {
-        console.log(inventoryItems);
         createInventorySlots(inventory, inventoryItems);
     }
 }
@@ -53,7 +53,7 @@ function createInventorySlots(inventory, inventoryItems) {
     let inventorySlot = document.createElement("li");
     inventorySlot.innerHTML = inventoryItems;
     inventorySlot.classList.add("inventory-slot")
-    
+
     inventory.append(inventorySlot);
 }
 function renderCharacterInformation(character, CharacterInfo) {
@@ -73,7 +73,7 @@ function createCharacterHitPointsElement(character, CharacterInfo) {
 
     CharacterInfo.append(characterHitPoints);
 }
-function createButtons(world, currentLocation, buttons, title) {
+function createButtons(world, currentLocation, buttons, title, item, character, inventory) {
     buttons.innerHTML = "";
 
     world[currentLocation].exits.forEach(element => {
@@ -83,17 +83,33 @@ function createButtons(world, currentLocation, buttons, title) {
 
         button.addEventListener("click", function () {
             currentLocation = element;
-            changeLocation(world, currentLocation, buttons, title);
+            changeLocation(world, currentLocation, buttons, title, item, character, inventory);
         })
         buttons.appendChild(button);
     });
 };
 
-function changeLocation(world, currentLocation, buttons, title) {
+function changeLocation(world, currentLocation, buttons, title, item, character, inventory) {
     let data = world[currentLocation];
 
     document.body.style.backgroundImage = data.image;
     document.body.style.backgroundSize = "cover";
     title.innerHTML = data.text;
-    createButtons(world, currentLocation, buttons, title);
-};
+    createButtons(world, currentLocation, buttons, title, item, character, inventory);
+    renderItem(currentLocation, item, character, inventory);
+
+}
+function renderItem(currentLocation, item, character, inventory) {
+    // console.log("render", currentLocation)
+    if (currentLocation === "village") {
+        item.classList.add("active");
+        
+        item.addEventListener("click", function () {
+            character.inventory.push(item.innerHTML);
+            renderInventory(inventory, character)
+            item.classList.remove("active");
+        })
+    } else {
+        item.classList.remove("active");
+    }
+}
