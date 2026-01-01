@@ -93,7 +93,10 @@ function changeLocation(world, currentLocation, buttons, title, item, character,
     let data = world[currentLocation];
 
     document.body.style.backgroundImage = data.image;
+    document.body.style.backgroundRepeat = "no-repeat";
+    document.body.style.backgroundPosition = "center center";
     document.body.style.backgroundSize = "cover";
+
     title.innerHTML = data.text;
     createButtons(world, currentLocation, buttons, title, item, character, inventory);
     renderItem(currentLocation, item, character, inventory);
@@ -103,7 +106,7 @@ function renderItem(currentLocation, item, character, inventory) {
     // console.log("render", currentLocation)
     if (currentLocation === "village") {
         item.classList.add("active");
-        
+
         item.addEventListener("click", function () {
             character.inventory.push(item.innerHTML);
             renderInventory(inventory, character)

@@ -2,12 +2,13 @@
     margin: 0;
     padding: 0;
 }
-
+body {
+    min-height: 100vh;
+}
 header {
     display: flex;
     justify-content: space-around;
 
-    background-color: aqua;
     height: 4rem;
 }
 
@@ -18,7 +19,7 @@ header {
     padding: 0;
     list-style: none;
     width: 100%;
-    background-color: #333;
+    color: white;
 }
 .inventory-slot {
     margin-left: 2rem;
@@ -30,8 +31,8 @@ header {
     justify-content: space-around;
     align-items: center;
     
+    color: white;
     width: 50%;
-    background-color: firebrick;
 }
 main {
     display: flex;
@@ -44,6 +45,7 @@ main {
     padding-bottom: 10rem;
     text-align: center;
     margin: 5rem;
+    color: white;
 }
 
 #buttons {
@@ -56,7 +58,7 @@ main {
     margin: 2rem;
     padding: 5px;         
     background-color: lightblue;
-    border: 1px solid #333;
+    border: 1px solid white;
     border-radius: 5px;
     font-size: 16px;      
     color: black;      
