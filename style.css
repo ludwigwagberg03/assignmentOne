@@ -3,14 +3,32 @@
     padding: 0;
 }
 
+header {
+    display: flex;
+    justify-content: space-around;
 
+    background-color: aqua;
+    height: 4rem;
+}
+
+.inventory {
+    width: 100%;
+    background-color: #333;
+}
+.character-info {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    
+    width: 50%;
+    background-color: firebrick;
+}
 main {
     display: flex;
     flex-direction: column;
     align-items: center;
     height: 80vh;
 }
-
 #text {
     padding-top: 5rem;
     padding-bottom: 10rem;
